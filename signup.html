@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Sani Shil</title>
+    
+    <!-- Bootstrap v5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts: Space Grotesk -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --accent-1: #4338ca;
+            --accent-2: #06b6d4;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-color);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        /* Animated Glowing Background Orbs */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.5;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent-1);
+            top: -10%; left: -10%;
+        }
+        .orb-2 {
+            width: 400px; height: 400px;
+            background: var(--accent-2);
+            bottom: -10%; right: -10%;
+            animation-delay: -5s;
+        }
+        @media (max-width: 575.98px) {
+            .orb-1 { width: 260px; height: 260px; }
+            .orb-2 { width: 220px; height: 220px; }
+        }
+
+        @keyframes float {
+            0%   { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        /* Glassmorphism Signup Card */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .signup-container {
+            width: 100%;
+            max-width: 420px;
+            max-height: 95vh;
+            overflow-y: auto;
+            padding: 2rem 2rem;
+        }
+
+        @media (max-width: 575.98px) {
+            .signup-container {
+                padding: 1.5rem 1.25rem;
+                max-width: 95%;
+            }
+        }
+
+        /* Custom scrollbar */
+        .signup-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .signup-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        .signup-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        /* Form Controls */
+        .form-control, .form-select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 0.65rem 0.85rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-2);
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+            color: #ffffff;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .btn-outline-light {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.7rem 2rem;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+        }
+
+        /* Social Buttons */
+        .social-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 0.7rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent-2);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .divider::before { margin-right: 1rem; }
+        .divider::after { margin-left: 1rem; }
+
+        /* Links */
+        a {
+            color: var(--accent-2);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover { color: #8b5cf6; }
+
+        /* Password Toggle */
+        .password-toggle {
+            position: absolute;
+            right: 0.85rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.3s ease;
+        }
+        .password-toggle:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-check-input:checked {
+            background-color: var(--accent-2);
+            border-color: var(--accent-2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Orbs -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <!-- Signup Container -->
+    <div class="glass-panel signup-container">
+        
+        <!-- Header -->
+        <div class="text-center mb-3">
+            <h1 class="fw-bold mb-2 fs-3">Create Account</h1>
+            <p class="text-secondary mb-0 small">Join us and start your journey</p>
+        </div>
+
+        <!-- Signup Form -->
+        <form id="signupForm">
+            
+            <!-- Full Name -->
+            <div class="mb-2">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullName" placeholder="John Doe" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-2">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+            </div>
+
+            <!-- Phone (Optional) -->
+            <div class="mb-2">
+                <label for="phone" class="form-label">Phone Number <span class="text-secondary small">(Optional)</span></label>
+                <input type="tel" class="form-control" id="phone" placeholder="+91 98765 43210">
+            </div>
+
+            <!-- Password -->
+            <div class="mb-2">
+                <label for="password" class="form-label">Password</label>
+                <div class="position-relative">
+                    <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                    <i class="bi bi-eye password-toggle" id="togglePassword"></i>
+                </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mb-2">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <div class="position-relative">
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="••••••••" required>
+                    <i class="bi bi-eye password-toggle" id="toggleConfirmPassword"></i>
+                </div>
+            </div>
+
+            <!-- Terms & Conditions -->
+            <div class="mb-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="terms" required>
+                    <label class="form-check-label text-secondary small" for="terms">
+                        I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100 mb-2">
+                Create Account <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="divider">or sign up with</div>
+
+        <!-- Social Signup -->
+        <div class="row g-2 mb-3">
+            <div class="col-6">
+                <a href="#" class="social-btn">
+                    <i class="bi bi-google"></i> Google
+                </a>
+            </div>
+            <div class="col-6">
+                <a href="#" class="social-btn">
+                    <i class="bi bi-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Sign In Link -->
+        <p class="text-center text-secondary small mb-0">
+            Already have an account? <a href="login.html" class="fw-semibold">Sign In</a>
+        </p>
+
+        <!-- Back to Home -->
+        <div class="text-center mt-3">
+            <a href="index.html" class="btn btn-outline-light btn-sm">
+                <i class="bi bi-arrow-left me-2"></i> Back to Home
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Password Toggle
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            togglePassword.classList.toggle('bi-eye');
+            togglePassword.classList.toggle('bi-eye-slash');
+        });
+
+        // Confirm Password Toggle
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+
+        toggleConfirmPassword.addEventListener('click', () => {
+            const type = confirmPasswordInput.type === 'password' ? 'text' : 'password';
+            confirmPasswordInput.type = type;
+            toggleConfirmPassword.classList.toggle('bi-eye');
+            toggleConfirmPassword.classList.toggle('bi-eye-slash');
+        });
+
+        // Form Submit with Validation
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('terms').checked;
+
+            // Password match validation
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // Password strength validation
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long!');
+                return;
+            }
+
+            // Terms check
+            if (!terms) {
+                alert('Please agree to the Terms and Privacy Policy!');
+                return;
+            }
+
+            // Add your signup logic here
+            console.log('Signup attempt:', { fullName, email, phone, password });
+            
+            // Example success redirect
+            // window.location.href = 'login.html';
+        });
+    </script>
+
+</body>
+</html>
