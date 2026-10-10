@@ -35,7 +35,7 @@
 
     <!-- Edit Mode Card -->
     @if (editing() === project.id) {
-      <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border-2 border-zinc-900 dark:border-zinc-700 p-6 sm:p-8 space-y-6 shadow-md dark:shadow-none transition-colors">
+      <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border-2 border-zinc-900 dark:border-zinc-700 p-6 sm:p-8 space-y-6 shadow-lg dark:shadow-none transition-colors">
         <div class="flex items-center justify-between pb-4 border-b border-zinc-200 dark:border-[#1c1c20]">
           <div class="flex items-center gap-2.5">
             <div class="w-7 h-7 rounded-lg bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center">
@@ -137,7 +137,7 @@
 
     <!-- View Mode Card -->
     } @else {
-      <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] hover:border-zinc-300 dark:hover:border-zinc-700 p-5 sm:p-6 shadow-xs transition-all duration-200">
+      <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] hover:border-zinc-300 dark:hover:border-zinc-700 p-5 sm:p-6 shadow-md dark:shadow-none hover:shadow-lg transition-all duration-200">
         <div class="flex flex-col md:flex-row gap-5">
 
           <!-- Thumbnail Box -->

@@ -31,7 +31,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
 
   <!-- Add New Skill Card (1 col) -->
-  <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-5 flex flex-col justify-between shadow-xs transition-colors">
+  <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-5 flex flex-col justify-between shadow-md dark:shadow-none transition-colors">
     <div>
       <div class="flex items-center gap-2 mb-3">
         <div class="w-6 h-6 rounded-md bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300">
@@ -72,7 +72,7 @@
   </div>
 
   <!-- Search & Category Filters (2 cols) -->
-  <div class="lg:col-span-2 rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-5 flex flex-col justify-between shadow-xs transition-colors">
+  <div class="lg:col-span-2 rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-5 flex flex-col justify-between shadow-md dark:shadow-none transition-colors">
     <div>
       <div class="flex items-center justify-between mb-3">
         <h3 class="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Browse & Filter</h3>
@@ -120,7 +120,7 @@
 <div class="space-y-5">
   @for (cat of displayedCategories; track cat) {
     @if (byCategory(cat).length > 0) {
-      <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-5 shadow-xs transition-all">
+      <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-5 shadow-md dark:shadow-none transition-all">
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-2.5">
             <span class="w-1.5 h-1.5 rounded-full bg-zinc-600 dark:bg-zinc-400"></span>
@@ -151,7 +151,7 @@
   }
 
   @if (displayedCategories.length === 0) {
-    <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-12 text-center shadow-xs">
+    <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-12 text-center shadow-md dark:shadow-none">
       <p class="text-sm text-zinc-500 dark:text-zinc-400">No skills match the current search filter.</p>
     </div>
   }
