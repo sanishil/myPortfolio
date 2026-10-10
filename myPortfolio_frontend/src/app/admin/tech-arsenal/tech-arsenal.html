@@ -1,5 +1,5 @@
 <!-- Header -->
-<div class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200 dark:border-[#1c1c20] transition-colors">
+<div class="mb-8 pb-6 border-b border-zinc-200 dark:border-[#1c1c20] transition-colors">
   <div>
     <div class="flex items-center gap-2.5 mb-1.5">
       <h2 class="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white tracking-tight">Tech Arsenal</h2>
@@ -9,22 +9,6 @@
     </div>
     <p class="text-sm text-zinc-500 dark:text-zinc-400">Manage technical competencies, languages, frameworks, and engineering tools.</p>
   </div>
-
-  <button
-    (click)="save()"
-    class="inline-flex items-center gap-2 bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-black active:scale-95 text-xs font-semibold px-5 py-2.5 rounded-xl transition-all duration-150 self-start sm:self-auto shadow-xs"
-  >
-    @if (saved()) {
-      <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-      <span>Skills Saved!</span>
-    } @else {
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
-        <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
-      </svg>
-      <span>Save Changes</span>
-    }
-  </button>
 </div>
 
 <!-- Add Skill & Search Filter Controls -->

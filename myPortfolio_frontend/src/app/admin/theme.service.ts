@@ -30,16 +30,19 @@ export class ThemeService {
   }
 
   private applyTheme(dark: boolean) {
-    if (dark) {
-      document.documentElement.classList.add('dark');
-      document.documentElement.classList.remove('light');
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.documentElement.classList.add('light');
-    }
-    const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) {
-      meta.setAttribute('content', dark ? '#000000' : '#f8fafc');
-    }
+    // Use requestAnimationFrame for smoother transition
+    requestAnimationFrame(() => {
+      if (dark) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      }
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) {
+        meta.setAttribute('content', dark ? '#000000' : '#f8fafc');
+      }
+    });
   }
 }

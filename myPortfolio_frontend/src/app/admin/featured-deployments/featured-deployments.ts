@@ -21,6 +21,7 @@ export interface Project {
 export class FeaturedDeployments {
   saved = signal(false);
   editing = signal<number | null>(null);
+  showModal = signal(false);
   nextId = 10;
 
   projects: Project[] = [
@@ -71,23 +72,25 @@ export class FeaturedDeployments {
 
   startNew() {
     this.draft = { ...this.emptyProject(), id: this.nextId++ };
-    this.editing.set(this.draft.id);
-    this.projects.push({ ...this.draft });
+    this.showModal.set(true);
   }
 
   saveEdit() {
     const idx = this.projects.findIndex((p) => p.id === this.draft.id);
-    if (idx !== -1) this.projects[idx] = { ...this.draft };
+    if (idx !== -1) {
+      this.projects[idx] = { ...this.draft };
+    } else {
+      this.projects.push({ ...this.draft });
+    }
     this.editing.set(null);
+    this.showModal.set(false);
     this.saved.set(true);
     setTimeout(() => this.saved.set(false), 3000);
   }
 
   cancelEdit() {
-    // If it was a new unsaved project, remove it
-    const idx = this.projects.findIndex((p) => p.id === this.draft.id);
-    if (idx !== -1 && !this.draft.title) this.projects.splice(idx, 1);
     this.editing.set(null);
+    this.showModal.set(false);
   }
 
   deleteProject(id: number) {

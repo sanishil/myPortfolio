@@ -1,4 +1,4 @@
-<div class="flex h-screen bg-slate-50 dark:bg-black text-zinc-900 dark:text-zinc-100 overflow-hidden relative">
+<div class="flex h-screen bg-slate-50 dark:bg-black text-zinc-900 dark:text-zinc-100 overflow-hidden relative" style="transition: background-color 0.3s ease, color 0.3s ease;">
 
   <!-- Mobile Overlay -->
   @if (mobileMenuOpen()) {
@@ -11,6 +11,7 @@
   <!-- ── Sidebar ── -->
   <aside
     [class]="(sidebarOpen() ? 'w-64' : 'w-20') + ' fixed inset-y-0 left-0 z-50 lg:static flex flex-col bg-white dark:bg-[#09090b] border-r border-zinc-200 dark:border-[#1c1c20] shadow-lg dark:shadow-none transition-all duration-300 ease-in-out shrink-0 ' + (mobileMenuOpen() ? 'translate-x-0 !w-64' : '-translate-x-full lg:translate-x-0')"
+    style="transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, width 0.3s ease, transform 0.3s ease;"
   >
     <!-- Brand Header -->
     <div class="flex items-center gap-3 px-5 py-5 border-b border-zinc-200 dark:border-[#1c1c20]">
@@ -126,10 +127,10 @@
   </aside>
 
   <!-- ── Main Area ── -->
-  <div class="flex flex-col flex-1 min-w-0 overflow-hidden relative z-10 bg-slate-50 dark:bg-black">
+  <div class="flex flex-col flex-1 min-w-0 overflow-hidden relative z-10 bg-slate-50 dark:bg-black" style="transition: background-color 0.3s ease;">
 
     <!-- Topbar Header -->
-    <header class="h-16 flex items-center justify-between px-6 bg-white/95 dark:bg-[#09090b] border-b border-zinc-200 dark:border-[#1c1c20] shadow-md dark:shadow-none shrink-0 gap-4">
+    <header class="h-16 flex items-center justify-between px-6 bg-white/95 dark:bg-[#09090b] border-b border-zinc-200 dark:border-[#1c1c20] shadow-md dark:shadow-none shrink-0 gap-4" style="transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
       <div class="flex items-center gap-4">
         <!-- Toggle button (desktop) -->
         <button
@@ -171,30 +172,46 @@
         <!-- Theme Toggle Switcher Button -->
         <button
           (click)="toggleTheme()"
-          class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 shadow-sm dark:shadow-none hover:shadow-md text-xs font-medium text-zinc-800 dark:text-zinc-200 transition-all cursor-pointer"
+          class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 shadow-sm dark:shadow-none hover:shadow-md text-xs font-medium text-zinc-800 dark:text-zinc-200 transition-all duration-300 cursor-pointer"
           [title]="themeService.isDark() ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
           aria-label="Toggle theme"
         >
           @if (themeService.isDark()) {
             <!-- Sun icon for switching to light mode -->
-            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-amber-400 transition-all duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
             </svg>
             <span class="hidden md:inline">Light Mode</span>
           } @else {
             <!-- Moon icon for switching to dark mode -->
-            <svg class="w-4 h-4 text-zinc-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-zinc-700 transition-all duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
             </svg>
             <span class="hidden md:inline">Dark Mode</span>
           }
         </button>
 
-        <!-- Live status chip -->
-        <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm dark:shadow-none text-zinc-700 dark:text-zinc-300 text-xs font-medium">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-          <span>System Synced</span>
-        </div>
+        <!-- Backup Button -->
+        <button
+          class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 shadow-sm dark:shadow-none hover:shadow-md text-xs font-medium text-zinc-700 hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-white transition-colors"
+          title="Download Backup"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <span>Backup</span>
+        </button>
+
+        <!-- Logout Button -->
+        <button
+          class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-50 hover:bg-red-100 dark:bg-red-500/10 dark:hover:bg-red-500/20 border border-red-200 dark:border-red-500/30 shadow-sm dark:shadow-none hover:shadow-md text-xs font-medium text-red-700 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+          title="Logout"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          <span>Logout</span>
+        </button>
 
         <!-- Quick Live Portfolio Link -->
         <a
@@ -223,7 +240,7 @@
     </header>
 
     <!-- Page Content Container -->
-    <main class="flex-1 overflow-y-auto px-5 py-6 sm:px-8 sm:py-8 bg-slate-50 dark:bg-black">
+    <main class="flex-1 overflow-y-auto px-5 py-6 sm:px-8 sm:py-8 bg-slate-50 dark:bg-black" style="transition: background-color 0.3s ease;">
       <div class="max-w-7xl mx-auto">
         <router-outlet />
       </div>
