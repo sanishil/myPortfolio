@@ -1,10 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, signal, inject } from '@angular/core';
+import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
 
 interface NavItem {
   label: string;
   icon: string;
   route: string;
+  badge?: string;
 }
 
 @Component({
@@ -14,17 +15,27 @@ interface NavItem {
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
 })
 export class Layout {
+  router = inject(Router);
   sidebarOpen = signal(true);
+  mobileMenuOpen = signal(false);
 
   navItems: NavItem[] = [
-    { label: 'Dashboard',            icon: 'grid',         route: '/admin/dashboard'             },
-    { label: 'About',                icon: 'user',         route: '/admin/about'                 },
-    { label: 'Tech Arsenal',         icon: 'cpu',          route: '/admin/tech-arsenal'          },
-    { label: 'Featured Deployments', icon: 'rocket',       route: '/admin/featured-deployments'  },
-    { label: 'Clients',              icon: 'briefcase',    route: '/admin/clients'               },
+    { label: 'Dashboard',            icon: 'grid',         route: '/admin/dashboard'            },
+    { label: 'About',                icon: 'user',         route: '/admin/about'                },
+    { label: 'Tech Arsenal',         icon: 'cpu',          route: '/admin/tech-arsenal',         badge: '41' },
+    { label: 'Featured Deployments', icon: 'rocket',       route: '/admin/featured-deployments', badge: '3'  },
+    { label: 'Clients',              icon: 'briefcase',    route: '/admin/clients',              badge: '2'  },
   ];
 
   toggleSidebar() {
     this.sidebarOpen.update((v) => !v);
+  }
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen.update((v) => !v);
+  }
+
+  closeMobileMenu() {
+    this.mobileMenuOpen.set(false);
   }
 }

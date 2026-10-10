@@ -5,13 +5,23 @@ interface StatCard {
   label: string;
   value: string;
   sub: string;
-  color: string;
+  icon: string;
+  trend: string;
 }
 
 interface QuickLink {
   label: string;
   route: string;
   desc: string;
+  icon: string;
+  badge: string;
+}
+
+interface RecentDeployment {
+  title: string;
+  tech: string;
+  status: string;
+  liveUrl: string;
 }
 
 @Component({
@@ -22,16 +32,85 @@ interface QuickLink {
 })
 export class Dashboard {
   stats: StatCard[] = [
-    { label: 'Projects',     value: '3',     sub: 'Deployed',          color: 'from-indigo-500 to-indigo-700'  },
-    { label: 'Clients',      value: '2+',    sub: 'Active',            color: 'from-cyan-500 to-cyan-700'      },
-    { label: 'Tech Skills',  value: '30+',   sub: 'Languages & Tools', color: 'from-violet-500 to-violet-700'  },
-    { label: 'Experience',   value: '1+ yr', sub: 'Industry',          color: 'from-pink-500 to-pink-700'      },
+    {
+      label: 'Deployments',
+      value: '3',
+      sub: 'Production Projects',
+      icon: 'rocket',
+      trend: '100% Online',
+    },
+    {
+      label: 'Tech Arsenal',
+      value: '41',
+      sub: '8 Skill Categories',
+      icon: 'cpu',
+      trend: 'Full Stack',
+    },
+    {
+      label: 'Featured Clients',
+      value: '2',
+      sub: 'Enterprise & Education',
+      icon: 'briefcase',
+      trend: 'Active',
+    },
+    {
+      label: 'Experience',
+      value: '1+ Yr',
+      sub: 'Associate SDE',
+      icon: 'award',
+      trend: 'Open to Work',
+    },
   ];
 
   quickLinks: QuickLink[] = [
-    { label: 'About',                route: '/admin/about',                desc: 'Edit bio & location'          },
-    { label: 'Tech Arsenal',         route: '/admin/tech-arsenal',         desc: 'Manage skills & tools'        },
-    { label: 'Featured Deployments', route: '/admin/featured-deployments', desc: 'Add / update projects'        },
-    { label: 'Clients',              route: '/admin/clients',              desc: 'Manage client marquee'        },
+    {
+      label: 'About Section',
+      route: '/admin/about',
+      desc: 'Bio, contact links, availability status',
+      icon: 'user',
+      badge: 'Profile',
+    },
+    {
+      label: 'Tech Arsenal',
+      route: '/admin/tech-arsenal',
+      desc: 'Languages, frameworks & engineering tools',
+      icon: 'cpu',
+      badge: '41 Skills',
+    },
+    {
+      label: 'Featured Deployments',
+      route: '/admin/featured-deployments',
+      desc: 'Portfolio live projects, repos & tags',
+      icon: 'rocket',
+      badge: '3 Live',
+    },
+    {
+      label: 'Client Marquee',
+      route: '/admin/clients',
+      desc: 'Partner logos, brand links & categories',
+      icon: 'briefcase',
+      badge: 'Partners',
+    },
+  ];
+
+  recentProjects: RecentDeployment[] = [
+    {
+      title: 'Universal Billing System',
+      tech: 'Angular • Spring Boot • PostgreSQL',
+      status: 'Live Deployed',
+      liveUrl: 'https://unibilling.netlify.app/login',
+    },
+    {
+      title: 'Smart Front Page Generator for TCEA',
+      tech: 'Angular • PHP • Bootstrap • MySQL',
+      status: 'Live Deployed',
+      liveUrl: 'https://myassignment.infinityfreeapp.com/',
+    },
+    {
+      title: 'Web Traffic Simulation for Performance Testing',
+      tech: 'Full-Stack Performance Suite',
+      status: 'Active',
+      liveUrl: '',
+    },
   ];
 }

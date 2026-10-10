@@ -1,62 +1,255 @@
-<!-- Page header -->
-<div class="mb-8">
-  <h1 class="text-2xl font-bold text-white">Dashboard</h1>
-  <p class="text-gray-400 text-sm mt-1">Welcome back, Sani. Here's your portfolio at a glance.</p>
+<!-- Page Header -->
+<div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#1c1c20]">
+  <div>
+    <div class="flex items-center gap-2.5 mb-1.5">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Dashboard Overview</h2>
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-zinc-900 text-zinc-300 border border-zinc-800">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        Live
+      </span>
+    </div>
+    <p class="text-sm text-zinc-400">Welcome back, <span class="text-zinc-200 font-medium">Sani</span>. Here is the operational summary of your portfolio.</p>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <a
+      href="/"
+      target="_blank"
+      class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-100 hover:bg-white text-black text-xs font-semibold transition-all duration-150 shadow-sm"
+    >
+      <span>Open Live Portfolio</span>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+      </svg>
+    </a>
+  </div>
 </div>
 
-<!-- Stat cards -->
-<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-10">
+<!-- 4 Key Stat Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
   @for (stat of stats; track stat.label) {
-    <div class="rounded-2xl bg-gray-900 border border-gray-800 p-5 flex flex-col gap-3 hover:border-gray-700 transition-colors">
-      <div [class]="'w-10 h-10 rounded-xl bg-gradient-to-br ' + stat.color + ' flex items-center justify-center'">
-        <span class="text-white text-lg font-black">{{ stat.value }}</span>
+    <div class="relative rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-5 hover:border-zinc-700 transition-all duration-200">
+      <div class="flex items-center justify-between mb-4">
+        <div class="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300">
+          @switch (stat.icon) {
+            @case ('rocket') {
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+              </svg>
+            }
+            @case ('cpu') {
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="8" y="8" width="8" height="8" rx="1"/>
+                <path d="M9 4V2M15 4V2M9 22v-2M15 22v-2M4 9H2M4 15H2M22 9h-2M22 15h-2"/>
+              </svg>
+            }
+            @case ('briefcase') {
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+              </svg>
+            }
+            @case ('award') {
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="6"/><path d="m15.5 13.5 2 7.5-5.5-3-5.5 3 2-7.5"/>
+              </svg>
+            }
+          }
+        </div>
+        <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800">
+          {{ stat.trend }}
+        </span>
       </div>
+
       <div>
-        <p class="text-xl font-bold text-white">{{ stat.value }}</p>
-        <p class="text-sm text-gray-400">{{ stat.label }}</p>
-        <p class="text-xs text-gray-500 mt-0.5">{{ stat.sub }}</p>
+        <p class="text-3xl font-extrabold text-white tracking-tight">{{ stat.value }}</p>
+        <p class="text-xs font-semibold text-zinc-300 mt-1">{{ stat.label }}</p>
+        <p class="text-xs text-zinc-400 mt-0.5">{{ stat.sub }}</p>
       </div>
     </div>
   }
 </div>
 
-<!-- Quick links -->
-<div class="mb-6">
-  <h2 class="text-lg font-semibold text-white mb-4">Quick Actions</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-    @for (link of quickLinks; track link.route) {
-      <a
-        [routerLink]="link.route"
-        class="group rounded-2xl bg-gray-900 border border-gray-800 p-5 flex flex-col gap-2 hover:border-indigo-500/60 hover:bg-gray-800 transition-all duration-200"
-      >
-        <p class="text-sm font-semibold text-white group-hover:text-indigo-400 transition-colors">{{ link.label }}</p>
-        <p class="text-xs text-gray-500">{{ link.desc }}</p>
-        <div class="mt-auto flex items-center gap-1 text-indigo-500 text-xs font-medium">
-          <span>Manage</span>
-          <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
+<!-- Main Content Two-Column Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+
+  <!-- Left Column (2 Cols): Quick Actions & Recent Deployments -->
+  <div class="lg:col-span-2 space-y-6">
+
+    <!-- Quick Actions Section -->
+    <div class="rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-6">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h3 class="text-base font-bold text-white tracking-tight">Quick Actions</h3>
+          <p class="text-xs text-zinc-400 mt-0.5">Jump directly to your portfolio management sections</p>
+        </div>
+        <span class="text-xs text-zinc-400 font-mono">4 Modules</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        @for (link of quickLinks; track link.route) {
+          <a
+            [routerLink]="link.route"
+            class="group p-4 rounded-xl bg-zinc-900/60 hover:bg-zinc-900 border border-zinc-800/80 hover:border-zinc-700 transition-all duration-150 flex flex-col justify-between gap-3"
+          >
+            <div class="flex items-start justify-between">
+              <div class="w-8 h-8 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-300 group-hover:text-white transition-colors">
+                @switch (link.icon) {
+                  @case ('user') {
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  }
+                  @case ('cpu') {
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+                  }
+                  @case ('rocket') {
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+                  }
+                  @case ('briefcase') {
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                  }
+                }
+              </div>
+              <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-400">
+                {{ link.badge }}
+              </span>
+            </div>
+
+            <div>
+              <p class="text-sm font-semibold text-white group-hover:text-zinc-200 transition-colors">{{ link.label }}</p>
+              <p class="text-xs text-zinc-400 mt-0.5">{{ link.desc }}</p>
+            </div>
+
+            <div class="flex items-center gap-1.5 text-xs font-semibold text-zinc-300 group-hover:text-white pt-1">
+              <span>Configure</span>
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </div>
+          </a>
+        }
+      </div>
+    </div>
+
+    <!-- Active Deployments Summary -->
+    <div class="rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-6">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h3 class="text-base font-bold text-white tracking-tight">Featured Deployments</h3>
+          <p class="text-xs text-zinc-400 mt-0.5">Projects currently surfaced to recruiters and clients</p>
+        </div>
+        <a routerLink="/admin/featured-deployments" class="text-xs font-semibold text-zinc-300 hover:text-white transition-colors flex items-center gap-1">
+          <span>Manage All</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="divide-y divide-[#1c1c20]">
+        @for (proj of recentProjects; track proj.title) {
+          <div class="py-3.5 first:pt-0 last:pb-0 flex items-center justify-between gap-4">
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <p class="text-sm font-semibold text-white truncate">{{ proj.title }}</p>
+                <span class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-zinc-900 text-zinc-300 border border-zinc-800">
+                  {{ proj.status }}
+                </span>
+              </div>
+              <p class="text-xs text-zinc-400 font-mono mt-0.5 truncate">{{ proj.tech }}</p>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0">
+              @if (proj.liveUrl) {
+                <a
+                  [href]="proj.liveUrl"
+                  target="_blank"
+                  class="p-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 transition-colors"
+                  title="Open Project"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                </a>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Column (1 Col): Profile & Live Status Card -->
+  <div class="space-y-6">
+
+    <!-- Developer Profile Card -->
+    <div class="rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-6 text-center relative overflow-hidden">
+      <div class="flex flex-col items-center">
+        <!-- Avatar -->
+        <div class="w-18 h-18 rounded-2xl bg-zinc-900 border border-zinc-700 p-1 mb-3">
+          <div class="w-full h-full rounded-[12px] bg-black flex items-center justify-center">
+            <span class="text-xl font-black text-white">SS</span>
+          </div>
+        </div>
+
+        <h3 class="text-lg font-bold text-white tracking-tight">Sani Shil</h3>
+        <p class="text-xs font-medium text-zinc-400 mt-0.5">Associate Software Development Engineer</p>
+
+        <!-- Availability pill -->
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium mt-3">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>Available for New Roles</span>
+        </div>
+
+        <!-- Info details -->
+        <div class="w-full mt-5 pt-5 border-t border-[#1c1c20] space-y-2.5 text-left text-xs">
+          <div class="flex items-center justify-between text-zinc-400">
+            <span>Location:</span>
+            <span class="text-zinc-200 font-medium">Agartala, India (IST)</span>
+          </div>
+          <div class="flex items-center justify-between text-zinc-400">
+            <span>Primary Stack:</span>
+            <span class="text-zinc-200 font-medium">Angular, Java, PHP</span>
+          </div>
+          <div class="flex items-center justify-between text-zinc-400">
+            <span>Deployments:</span>
+            <span class="text-zinc-200 font-medium">Netlify, FreeHost</span>
+          </div>
+        </div>
+
+        <a
+          routerLink="/admin/about"
+          class="w-full mt-5 py-2.5 px-4 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-xs font-semibold text-zinc-200 hover:text-white transition-all text-center"
+        >
+          Edit Profile Information
+        </a>
+      </div>
+    </div>
+
+    <!-- Live Portfolio Sync Banner -->
+    <div class="rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-6 relative">
+      <div>
+        <div class="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 mb-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/>
           </svg>
         </div>
-      </a>
-    }
-  </div>
-</div>
+        <h4 class="text-base font-bold text-white tracking-tight">Public Portfolio Active</h4>
+        <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
+          Your portfolio displays your responsive design, animations, and featured project links seamlessly to visitors.
+        </p>
 
-<!-- Portfolio link -->
-<div class="rounded-2xl bg-gradient-to-r from-indigo-600/20 to-cyan-600/20 border border-indigo-500/30 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-  <div>
-    <p class="text-white font-semibold">View live portfolio</p>
-    <p class="text-gray-400 text-sm mt-0.5">See how your portfolio looks to visitors.</p>
+        <a
+          href="/"
+          target="_blank"
+          class="mt-4 inline-flex items-center gap-2 bg-zinc-100 hover:bg-white text-black text-xs font-semibold px-4 py-2.5 rounded-xl transition-all"
+        >
+          <span>Preview Visitor View</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
   </div>
-  <a
-    href="/"
-    target="_blank"
-    class="shrink-0 inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors"
-  >
-    Open Portfolio
-    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-      <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-    </svg>
-  </a>
 </div>

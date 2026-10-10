@@ -1,128 +1,161 @@
 <!-- Header -->
-<div class="mb-8 flex items-center justify-between gap-4 flex-wrap">
+<div class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#1c1c20]">
   <div>
-    <h1 class="text-2xl font-bold text-white">Clients</h1>
-    <p class="text-gray-400 text-sm mt-1">Manage the clients shown in the marquee strip.</p>
+    <div class="flex items-center gap-2.5 mb-1.5">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Client Marquee</h2>
+      <span class="text-xs px-2.5 py-0.5 rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800 font-medium">
+        {{ clients.length }} Featured Clients
+      </span>
+    </div>
+    <p class="text-sm text-zinc-400">Manage client organizations, marquee logos, and website links displayed on your portfolio.</p>
   </div>
+
   <button
     (click)="save()"
-    class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition-all"
+    class="inline-flex items-center gap-2 bg-zinc-100 hover:bg-white active:scale-95 text-black text-xs font-semibold px-5 py-2.5 rounded-xl transition-all duration-150 self-start sm:self-auto shadow-sm"
   >
     @if (saved()) {
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-      Saved!
+      <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>Changes Saved!</span>
     } @else {
       <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
         <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
       </svg>
-      Save Changes
+      <span>Save Changes</span>
     }
   </button>
 </div>
 
-<!-- Add client form -->
-<div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 mb-6">
-  <h2 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">Add New Client</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-    <div class="flex flex-col gap-1.5">
-      <label class="text-xs text-gray-400 font-medium">Client Name *</label>
-      <input [(ngModel)]="newClient.name" name="clientName"
-        class="bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
-        placeholder="Company / Person" />
+<!-- Add Client Card -->
+<div class="rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-6 mb-8">
+  <div class="flex items-center gap-2.5 pb-4 mb-5 border-b border-[#1c1c20]">
+    <div class="w-7 h-7 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
     </div>
+    <h3 class="text-sm font-bold text-white tracking-tight uppercase">Add New Partner / Client</h3>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
     <div class="flex flex-col gap-1.5">
-      <label class="text-xs text-gray-400 font-medium">Website URL</label>
-      <input [(ngModel)]="newClient.url" name="clientUrl"
-        class="bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
-        placeholder="https://…" />
+      <label class="text-xs font-semibold text-zinc-300">Client / Org Name *</label>
+      <input
+        [(ngModel)]="newClient.name"
+        name="clientName"
+        class="bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 transition-all"
+        placeholder="e.g. Acme Corp"
+      />
     </div>
+
     <div class="flex flex-col gap-1.5">
-      <label class="text-xs text-gray-400 font-medium">Logo path / URL</label>
-      <input [(ngModel)]="newClient.logo" name="clientLogo"
-        class="bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
-        placeholder="assets/logo.png (optional)" />
+      <label class="text-xs font-semibold text-zinc-300">Official Website URL</label>
+      <input
+        [(ngModel)]="newClient.url"
+        name="clientUrl"
+        class="bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 transition-all font-mono"
+        placeholder="https://company.com"
+      />
     </div>
+
     <div class="flex flex-col gap-1.5">
-      <label class="text-xs text-gray-400 font-medium">Category</label>
-      <input [(ngModel)]="newClient.category" name="clientCat"
-        class="bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
-        placeholder="e.g. FinTech, Education" />
+      <label class="text-xs font-semibold text-zinc-300">Logo Image Path / URL</label>
+      <input
+        [(ngModel)]="newClient.logo"
+        name="clientLogo"
+        class="bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 transition-all font-mono"
+        placeholder="assets/logo.png"
+      />
+    </div>
+
+    <div class="flex flex-col gap-1.5">
+      <label class="text-xs font-semibold text-zinc-300">Domain / Category</label>
+      <input
+        [(ngModel)]="newClient.category"
+        name="clientCat"
+        class="bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 transition-all"
+        placeholder="e.g. FinTech, EdTech"
+      />
     </div>
   </div>
-  <button
-    (click)="addClient()"
-    class="mt-4 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition-colors"
-  >
-    + Add Client
-  </button>
+
+  <div class="pt-4 flex justify-end">
+    <button
+      (click)="addClient()"
+      class="bg-zinc-100 hover:bg-white active:scale-[0.98] text-black text-xs font-semibold px-5 py-2.5 rounded-xl transition-all flex items-center gap-1.5 shadow-sm"
+    >
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      <span>Add to Marquee</span>
+    </button>
+  </div>
 </div>
 
-<!-- Client list -->
-<div class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden">
-  <table class="w-full text-sm">
-    <thead>
-      <tr class="border-b border-gray-800 text-xs text-gray-500 uppercase tracking-wider">
-        <th class="text-left px-5 py-3.5">Client</th>
-        <th class="text-left px-5 py-3.5 hidden md:table-cell">URL</th>
-        <th class="text-left px-5 py-3.5 hidden sm:table-cell">Category</th>
-        <th class="text-left px-5 py-3.5 hidden lg:table-cell">Logo</th>
-        <th class="px-5 py-3.5"></th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (client of clients; track client.id) {
-        <tr class="border-b border-gray-800 last:border-0 hover:bg-gray-800/50 transition-colors">
-          <!-- Name + logo preview -->
-          <td class="px-5 py-3.5">
-            <div class="flex items-center gap-3">
-              @if (client.logo) {
-                <img [src]="client.logo" [alt]="client.name" class="w-7 h-7 rounded object-contain bg-gray-700 p-0.5" />
-              } @else {
-                <div class="w-7 h-7 rounded bg-gray-700 flex items-center justify-center text-gray-500">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                  </svg>
-                </div>
-              }
-              <span class="text-white font-medium">{{ client.name }}</span>
-            </div>
-          </td>
-          <td class="px-5 py-3.5 hidden md:table-cell">
-            @if (client.url) {
-              <a [href]="client.url" target="_blank" class="text-indigo-400 hover:text-indigo-300 truncate max-w-xs block transition-colors">
-                {{ client.url }}
-              </a>
-            } @else {
-              <span class="text-gray-600">—</span>
-            }
-          </td>
-          <td class="px-5 py-3.5 hidden sm:table-cell">
-            @if (client.category) {
-              <span class="inline-block bg-gray-800 border border-gray-700 text-gray-300 text-xs px-2.5 py-1 rounded-full">{{ client.category }}</span>
-            } @else {
-              <span class="text-gray-600">—</span>
-            }
-          </td>
-          <td class="px-5 py-3.5 hidden lg:table-cell text-gray-500 text-xs truncate max-w-xs">
-            {{ client.logo || '—' }}
-          </td>
-          <td class="px-5 py-3.5">
-            <button
-              (click)="removeClient(client.id)"
-              class="text-xs text-red-400 hover:text-red-300 bg-gray-800 hover:bg-red-900/30 px-3 py-1.5 rounded-lg transition-colors"
-            >
-              Remove
-            </button>
-          </td>
-        </tr>
-      }
+<!-- Client Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+  @for (client of clients; track client.id) {
+    <div class="rounded-2xl bg-[#0e0e11] border border-[#1f1f24] hover:border-zinc-700 p-5 flex items-center justify-between gap-4 transition-all">
+      <div class="flex items-center gap-4 min-w-0">
+        <!-- Logo / Icon -->
+        <div class="w-12 h-12 rounded-xl bg-black border border-[#27272a] flex items-center justify-center p-1.5 shrink-0">
+          @if (client.logo) {
+            <img [src]="client.logo" [alt]="client.name" class="w-full h-full object-contain" />
+          } @else {
+            <span class="text-sm font-bold text-white">
+              {{ client.name.slice(0, 2).toUpperCase() }}
+            </span>
+          }
+        </div>
 
-      @if (clients.length === 0) {
-        <tr>
-          <td colspan="5" class="px-5 py-10 text-center text-gray-600 text-sm">No clients yet. Add one above.</td>
-        </tr>
-      }
-    </tbody>
-  </table>
+        <!-- Name & Details -->
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <h4 class="text-sm font-bold text-white truncate">{{ client.name }}</h4>
+            @if (client.category) {
+              <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-zinc-900 text-zinc-300 border border-zinc-800">
+                {{ client.category }}
+              </span>
+            }
+          </div>
+
+          @if (client.url) {
+            <a
+              [href]="client.url"
+              target="_blank"
+              class="text-xs text-zinc-400 hover:text-white font-mono mt-0.5 flex items-center gap-1 truncate transition-colors underline-offset-4 hover:underline"
+            >
+              <span class="truncate">{{ client.url }}</span>
+              <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          } @else {
+            <p class="text-xs text-zinc-500 mt-0.5">No website URL attached</p>
+          }
+        </div>
+      </div>
+
+      <!-- Action -->
+      <button
+        (click)="removeClient(client.id)"
+        class="p-2 rounded-xl bg-zinc-900 hover:bg-red-500/20 text-zinc-400 hover:text-red-400 border border-zinc-800 transition-colors shrink-0"
+        title="Remove {{ client.name }}"
+        aria-label="Remove client"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+        </svg>
+      </button>
+    </div>
+  }
+
+  @if (clients.length === 0) {
+    <div class="col-span-full rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-12 text-center">
+      <div class="w-12 h-12 rounded-2xl bg-zinc-900 text-zinc-500 mx-auto flex items-center justify-center mb-3">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+        </svg>
+      </div>
+      <p class="text-sm font-semibold text-white">No clients in the marquee</p>
+      <p class="text-xs text-zinc-400 mt-1">Use the form above to add your first partner or client.</p>
+    </div>
+  }
 </div>

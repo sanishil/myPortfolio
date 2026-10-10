@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-interface Skill {
+export interface Skill {
   id: number;
   name: string;
   category: string;
@@ -14,9 +14,21 @@ interface Skill {
   imports: [FormsModule],
 })
 export class TechArsenal {
-  categories = ['Languages', 'Frameworks', 'Frontend', 'Backend', 'Database', 'Tools', 'Core Concepts', 'Deployment'];
+  categories = [
+    'Languages',
+    'Frameworks',
+    'Frontend',
+    'Backend',
+    'Database',
+    'Tools',
+    'Core Concepts',
+    'Deployment',
+  ];
+
   saved = signal(false);
   nextId = 100;
+  searchQuery = signal('');
+  selectedFilter = signal<string>('All');
 
   newSkill = { name: '', category: 'Languages' };
 
@@ -73,7 +85,18 @@ export class TechArsenal {
   ];
 
   byCategory(cat: string) {
-    return this.skills.filter((s) => s.category === cat);
+    const q = this.searchQuery().toLowerCase().trim();
+    return this.skills.filter((s) => {
+      const matchesCat = s.category === cat;
+      const matchesQuery = !q || s.name.toLowerCase().includes(q);
+      return matchesCat && matchesQuery;
+    });
+  }
+
+  get displayedCategories() {
+    const filter = this.selectedFilter();
+    if (filter === 'All') return this.categories;
+    return this.categories.filter((c) => c === filter);
   }
 
   addSkill() {
