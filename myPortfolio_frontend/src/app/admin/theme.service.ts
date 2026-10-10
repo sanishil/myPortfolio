@@ -11,8 +11,9 @@ export class ThemeService {
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
       const saved = localStorage.getItem('portfolio_admin_theme');
-      const isDarkMode = saved ? saved === 'dark' : true;
-      this.setTheme(isDarkMode);
+      const isDarkMode = saved === 'light' ? false : true;
+      this.isDark.set(isDarkMode);
+      this.applyTheme(isDarkMode);
     }
   }
 
@@ -24,13 +25,21 @@ export class ThemeService {
     this.isDark.set(dark);
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('portfolio_admin_theme', dark ? 'dark' : 'light');
-      if (dark) {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-      } else {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.classList.add('light');
-      }
+      this.applyTheme(dark);
+    }
+  }
+
+  private applyTheme(dark: boolean) {
+    if (dark) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+    }
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute('content', dark ? '#000000' : '#f8fafc');
     }
   }
 }

@@ -8,6 +8,16 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
+html {
+  background-color: #f8fafc;
+  color-scheme: light;
+}
+
+html.dark {
+  background-color: #000000;
+  color-scheme: dark;
+}
+
 body {
   font-family: var(--font-sans);
   background-color: #f8fafc;

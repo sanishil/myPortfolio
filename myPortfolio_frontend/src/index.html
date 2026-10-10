@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Sani Shil | Portfolio Admin Console</title>
@@ -7,13 +7,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Portfolio Admin Management Console for Sani Shil">
   <meta name="theme-color" content="#000000">
+
+  <!-- Instant inline execution to prevent FOUC / flash of dark theme on refresh -->
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('portfolio_admin_theme');
+        var isDark = theme ? theme === 'dark' : true;
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', '#f8fafc');
+        }
+      } catch (e) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="bg-slate-50 dark:bg-black text-zinc-900 dark:text-zinc-100 antialiased selection:bg-zinc-300 dark:selection:bg-zinc-800 transition-colors duration-200">
+<body class="bg-slate-50 dark:bg-black text-zinc-900 dark:text-zinc-100 antialiased selection:bg-zinc-300 dark:selection:bg-zinc-800">
   <app-root></app-root>
 </body>
 </html>

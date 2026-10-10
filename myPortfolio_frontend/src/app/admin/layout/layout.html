@@ -1,4 +1,4 @@
-<div class="flex h-screen bg-slate-50 dark:bg-black text-zinc-900 dark:text-zinc-100 overflow-hidden relative transition-colors duration-200">
+<div class="flex h-screen bg-slate-50 dark:bg-black text-zinc-900 dark:text-zinc-100 overflow-hidden relative">
 
   <!-- Mobile Overlay -->
   @if (mobileMenuOpen()) {
@@ -126,10 +126,10 @@
   </aside>
 
   <!-- ── Main Area ── -->
-  <div class="flex flex-col flex-1 min-w-0 overflow-hidden relative z-10 bg-slate-50 dark:bg-black transition-colors duration-200">
+  <div class="flex flex-col flex-1 min-w-0 overflow-hidden relative z-10 bg-slate-50 dark:bg-black">
 
     <!-- Topbar Header -->
-    <header class="h-16 flex items-center justify-between px-6 bg-white/95 dark:bg-[#09090b] border-b border-zinc-200 dark:border-[#1c1c20] shrink-0 gap-4 transition-colors duration-200">
+    <header class="h-16 flex items-center justify-between px-6 bg-white/95 dark:bg-[#09090b] border-b border-zinc-200 dark:border-[#1c1c20] shrink-0 gap-4">
       <div class="flex items-center gap-4">
         <!-- Toggle button (desktop) -->
         <button
@@ -223,7 +223,7 @@
     </header>
 
     <!-- Page Content Container -->
-    <main class="flex-1 overflow-y-auto px-5 py-6 sm:px-8 sm:py-8 bg-slate-50 dark:bg-black transition-colors duration-200">
+    <main class="flex-1 overflow-y-auto px-5 py-6 sm:px-8 sm:py-8 bg-slate-50 dark:bg-black">
       <div class="max-w-7xl mx-auto">
         <router-outlet />
       </div>
