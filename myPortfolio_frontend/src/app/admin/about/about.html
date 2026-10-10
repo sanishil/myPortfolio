@@ -1,19 +1,19 @@
 <!-- Page Header -->
-<div class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#1c1c20]">
+<div class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200 dark:border-[#1c1c20] transition-colors">
   <div>
     <div class="flex items-center gap-2.5 mb-1.5">
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">About & Biography</h2>
-      <span class="text-xs px-2.5 py-0.5 rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800 font-medium">Profile Data</span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white tracking-tight">About & Biography</h2>
+      <span class="text-xs px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 font-medium">Profile Data</span>
     </div>
-    <p class="text-sm text-zinc-400">Customize your personal details, professional bio, and social presence.</p>
+    <p class="text-sm text-zinc-500 dark:text-zinc-400">Customize your personal details, professional bio, and social presence.</p>
   </div>
 
   <button
     (click)="save()"
-    class="inline-flex items-center gap-2 bg-zinc-100 hover:bg-white active:scale-95 text-black text-xs font-semibold px-5 py-2.5 rounded-xl transition-all duration-150 self-start sm:self-auto shadow-sm"
+    class="inline-flex items-center gap-2 bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-black active:scale-95 text-xs font-semibold px-5 py-2.5 rounded-xl transition-all duration-150 self-start sm:self-auto shadow-xs"
   >
     @if (saved()) {
-      <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
         <polyline points="20 6 9 17 4 12"/>
       </svg>
       <span>Changes Saved!</span>
@@ -34,70 +34,70 @@
   <form (ngSubmit)="save()" class="lg:col-span-2 space-y-6">
 
     <!-- Section 1: Identity & Professional Role -->
-    <div class="rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-6 space-y-5">
-      <div class="flex items-center justify-between pb-3 border-b border-[#1c1c20]">
+    <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-6 space-y-5 shadow-xs transition-colors">
+      <div class="flex items-center justify-between pb-3 border-b border-zinc-200 dark:border-[#1c1c20]">
         <div class="flex items-center gap-2.5">
-          <div class="w-7 h-7 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300">
+          <div class="w-7 h-7 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
-          <h3 class="text-sm font-bold text-white tracking-tight uppercase">Identity & Role</h3>
+          <h3 class="text-sm font-bold text-zinc-900 dark:text-white tracking-tight uppercase">Identity & Role</h3>
         </div>
-        <span class="text-[11px] text-zinc-500">Primary Branding</span>
+        <span class="text-[11px] text-zinc-400 dark:text-zinc-500">Primary Branding</span>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-semibold text-zinc-300">Full Name</label>
+          <label class="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Full Name</label>
           <input
             [(ngModel)]="form.name"
             name="name"
-            class="bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl px-4 py-2.5 text-sm text-white placeholder-zinc-600 transition-all"
+            class="bg-zinc-50 dark:bg-black border border-zinc-300 dark:border-[#27272a] focus:border-zinc-900 dark:focus:border-zinc-400 focus:bg-white dark:focus:bg-black rounded-xl px-4 py-2.5 text-sm text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 transition-all"
             placeholder="Your name"
           />
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-semibold text-zinc-300">Current Job Title</label>
+          <label class="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Current Job Title</label>
           <input
             [(ngModel)]="form.title"
             name="title"
-            class="bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl px-4 py-2.5 text-sm text-white placeholder-zinc-600 transition-all"
+            class="bg-zinc-50 dark:bg-black border border-zinc-300 dark:border-[#27272a] focus:border-zinc-900 dark:focus:border-zinc-400 focus:bg-white dark:focus:bg-black rounded-xl px-4 py-2.5 text-sm text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 transition-all"
             placeholder="e.g. Associate Software Development Engineer"
           />
         </div>
 
         <div class="flex flex-col gap-1.5 sm:col-span-2">
           <div class="flex items-center justify-between">
-            <label class="text-xs font-semibold text-zinc-300">Executive Bio</label>
-            <span class="text-[10px] text-zinc-500 font-mono">{{ form.bio.length }} characters</span>
+            <label class="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Executive Bio</label>
+            <span class="text-[10px] text-zinc-400 dark:text-zinc-500 font-mono">{{ form.bio.length }} characters</span>
           </div>
           <textarea
             [(ngModel)]="form.bio"
             name="bio"
             rows="4"
-            class="bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-600 transition-all resize-none leading-relaxed"
+            class="bg-zinc-50 dark:bg-black border border-zinc-300 dark:border-[#27272a] focus:border-zinc-900 dark:focus:border-zinc-400 focus:bg-white dark:focus:bg-black rounded-xl px-4 py-3 text-sm text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 transition-all resize-none leading-relaxed"
             placeholder="Introduce yourself and highlight your engineering strengths…"
           ></textarea>
         </div>
 
         <!-- Availability Toggle Switch -->
         <div class="sm:col-span-2 pt-2">
-          <div class="flex items-center justify-between p-4 rounded-xl bg-black border border-[#1f1f24]">
+          <div class="flex items-center justify-between p-4 rounded-xl bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-[#1f1f24]">
             <div>
-              <p class="text-xs font-semibold text-white">Availability for Opportunities</p>
-              <p class="text-[11px] text-zinc-400 mt-0.5">Show "Available for new opportunities" status badge on the portfolio</p>
+              <p class="text-xs font-semibold text-zinc-900 dark:text-white">Availability for Opportunities</p>
+              <p class="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">Show "Available for new opportunities" status badge on the portfolio</p>
             </div>
 
             <button
               type="button"
               (click)="form.available = !form.available"
-              [class]="form.available ? 'bg-emerald-500' : 'bg-zinc-800'"
+              [class]="form.available ? 'bg-emerald-500' : 'bg-zinc-300 dark:bg-zinc-800'"
               class="relative w-12 h-6 rounded-full transition-colors duration-200 focus:outline-none shrink-0"
               aria-label="Toggle availability"
             >
               <span
                 [class]="form.available ? 'translate-x-6' : 'translate-x-1'"
-                class="absolute top-0.5 left-0 w-5 h-5 bg-white rounded-full shadow transition-transform duration-200 inline-block"
+                class="absolute top-0.5 left-0 w-5 h-5 bg-white rounded-full shadow-xs transition-transform duration-200 inline-block"
               ></span>
             </button>
           </div>
@@ -106,34 +106,34 @@
     </div>
 
     <!-- Section 2: Location & Timezone -->
-    <div class="rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-6 space-y-5">
-      <div class="flex items-center justify-between pb-3 border-b border-[#1c1c20]">
+    <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-6 space-y-5 shadow-xs transition-colors">
+      <div class="flex items-center justify-between pb-3 border-b border-zinc-200 dark:border-[#1c1c20]">
         <div class="flex items-center gap-2.5">
-          <div class="w-7 h-7 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300">
+          <div class="w-7 h-7 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
-          <h3 class="text-sm font-bold text-white tracking-tight uppercase">Location & Presence</h3>
+          <h3 class="text-sm font-bold text-zinc-900 dark:text-white tracking-tight uppercase">Location & Presence</h3>
         </div>
-        <span class="text-[11px] text-zinc-500">Geographic Info</span>
+        <span class="text-[11px] text-zinc-400 dark:text-zinc-500">Geographic Info</span>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-semibold text-zinc-300">City, State / Country</label>
+          <label class="text-xs font-semibold text-zinc-700 dark:text-zinc-300">City, State / Country</label>
           <input
             [(ngModel)]="form.location"
             name="location"
-            class="bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl px-4 py-2.5 text-sm text-white placeholder-zinc-600 transition-all"
+            class="bg-zinc-50 dark:bg-black border border-zinc-300 dark:border-[#27272a] focus:border-zinc-900 dark:focus:border-zinc-400 focus:bg-white dark:focus:bg-black rounded-xl px-4 py-2.5 text-sm text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 transition-all"
             placeholder="e.g. Agartala, Tripura, India"
           />
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-semibold text-zinc-300">Timezone</label>
+          <label class="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Timezone</label>
           <input
             [(ngModel)]="form.timezone"
             name="timezone"
-            class="bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl px-4 py-2.5 text-sm text-white placeholder-zinc-600 transition-all"
+            class="bg-zinc-50 dark:bg-black border border-zinc-300 dark:border-[#27272a] focus:border-zinc-900 dark:focus:border-zinc-400 focus:bg-white dark:focus:bg-black rounded-xl px-4 py-2.5 text-sm text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 transition-all"
             placeholder="e.g. IST (UTC +5:30)"
           />
         </div>
@@ -141,74 +141,74 @@
     </div>
 
     <!-- Section 3: Social & Resume Links -->
-    <div class="rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-6 space-y-5">
-      <div class="flex items-center justify-between pb-3 border-b border-[#1c1c20]">
+    <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-6 space-y-5 shadow-xs transition-colors">
+      <div class="flex items-center justify-between pb-3 border-b border-zinc-200 dark:border-[#1c1c20]">
         <div class="flex items-center gap-2.5">
-          <div class="w-7 h-7 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.71 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <div class="w-7 h-7 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           </div>
-          <h3 class="text-sm font-bold text-white tracking-tight uppercase">Professional Links</h3>
+          <h3 class="text-sm font-bold text-zinc-900 dark:text-white tracking-tight uppercase">Professional Links</h3>
         </div>
-        <span class="text-[11px] text-zinc-500">Connected Profiles</span>
+        <span class="text-[11px] text-zinc-400 dark:text-zinc-500">Connected Profiles</span>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-semibold text-zinc-300">Email Address</label>
+          <label class="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Email Address</label>
           <div class="relative">
             <input
               [(ngModel)]="form.email"
               name="email"
               type="email"
-              class="w-full bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-zinc-600 transition-all font-mono text-xs"
+              class="w-full bg-zinc-50 dark:bg-black border border-zinc-300 dark:border-[#27272a] focus:border-zinc-900 dark:focus:border-zinc-400 focus:bg-white dark:focus:bg-black rounded-xl pl-10 pr-4 py-2.5 text-sm text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 transition-all font-mono text-xs"
               placeholder="you@email.com"
             />
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-400 dark:text-zinc-500">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
             </div>
           </div>
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-semibold text-zinc-300">GitHub Profile URL</label>
+          <label class="text-xs font-semibold text-zinc-700 dark:text-zinc-300">GitHub Profile URL</label>
           <div class="relative">
             <input
               [(ngModel)]="form.github"
               name="github"
-              class="w-full bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-zinc-600 transition-all font-mono text-xs"
+              class="w-full bg-zinc-50 dark:bg-black border border-zinc-300 dark:border-[#27272a] focus:border-zinc-900 dark:focus:border-zinc-400 focus:bg-white dark:focus:bg-black rounded-xl pl-10 pr-4 py-2.5 text-sm text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 transition-all font-mono text-xs"
               placeholder="https://github.com/..."
             />
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-400 dark:text-zinc-500">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
             </div>
           </div>
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-semibold text-zinc-300">LinkedIn Profile URL</label>
+          <label class="text-xs font-semibold text-zinc-700 dark:text-zinc-300">LinkedIn Profile URL</label>
           <div class="relative">
             <input
               [(ngModel)]="form.linkedin"
               name="linkedin"
-              class="w-full bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-zinc-600 transition-all font-mono text-xs"
+              class="w-full bg-zinc-50 dark:bg-black border border-zinc-300 dark:border-[#27272a] focus:border-zinc-900 dark:focus:border-zinc-400 focus:bg-white dark:focus:bg-black rounded-xl pl-10 pr-4 py-2.5 text-sm text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 transition-all font-mono text-xs"
               placeholder="https://linkedin.com/in/..."
             />
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-400 dark:text-zinc-500">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76c.98 0 1.77-.8 1.77-1.78a1.77 1.77 0 0 0-3.55 0c0 .98.79 1.78 1.78 1.78m1.39 9.74v-8.37H5.07v8.37h2.78z"/></svg>
             </div>
           </div>
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-semibold text-zinc-300">CV / Resume Document URL</label>
+          <label class="text-xs font-semibold text-zinc-700 dark:text-zinc-300">CV / Resume Document URL</label>
           <div class="relative">
             <input
               [(ngModel)]="form.cv"
               name="cv"
-              class="w-full bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-zinc-600 transition-all font-mono text-xs"
+              class="w-full bg-zinc-50 dark:bg-black border border-zinc-300 dark:border-[#27272a] focus:border-zinc-900 dark:focus:border-zinc-400 focus:bg-white dark:focus:bg-black rounded-xl pl-10 pr-4 py-2.5 text-sm text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 transition-all font-mono text-xs"
               placeholder="https://drive.google.com/..."
             />
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-400 dark:text-zinc-500">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
             </div>
           </div>
@@ -220,64 +220,64 @@
 
   <!-- Right Column: Live Card Preview (1 col) -->
   <div class="space-y-6">
-    <div class="rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-6 sticky top-6">
-      <div class="flex items-center justify-between pb-4 border-b border-[#1c1c20] mb-5">
-        <span class="text-xs font-bold text-zinc-300 uppercase tracking-wider">Live Preview Card</span>
-        <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800 font-medium">Recruiter View</span>
+    <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-6 sticky top-6 shadow-xs transition-colors">
+      <div class="flex items-center justify-between pb-4 border-b border-zinc-200 dark:border-[#1c1c20] mb-5">
+        <span class="text-xs font-bold text-zinc-800 dark:text-zinc-300 uppercase tracking-wider">Live Preview Card</span>
+        <span class="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 font-medium">Recruiter View</span>
       </div>
 
       <!-- Preview Card -->
-      <div class="rounded-2xl bg-black border border-[#27272a] p-5 relative">
+      <div class="rounded-2xl bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-[#27272a] p-5 relative">
         <div class="flex items-center gap-3.5 mb-4">
-          <div class="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 flex items-center justify-center font-bold text-white text-base shrink-0">
+          <div class="w-12 h-12 rounded-xl bg-zinc-200 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 flex items-center justify-center font-bold text-zinc-900 dark:text-white text-base shrink-0">
             SS
           </div>
           <div class="min-w-0">
-            <h4 class="text-base font-bold text-white truncate">{{ form.name || 'Your Name' }}</h4>
-            <p class="text-xs text-zinc-400 truncate">{{ form.title || 'Job Title' }}</p>
+            <h4 class="text-base font-bold text-zinc-900 dark:text-white truncate">{{ form.name || 'Your Name' }}</h4>
+            <p class="text-xs text-zinc-500 dark:text-zinc-400 truncate">{{ form.title || 'Job Title' }}</p>
           </div>
         </div>
 
         <!-- Availability -->
         <div class="mb-4">
           @if (form.available) {
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-900 text-emerald-400 border border-zinc-800 text-xs font-medium">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white dark:bg-zinc-900 text-emerald-600 dark:text-emerald-400 border border-zinc-200 dark:border-zinc-800 text-xs font-medium">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               Available for Hire
             </span>
           } @else {
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800 text-xs font-medium">
-              <span class="w-1.5 h-1.5 rounded-full bg-zinc-600"></span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 text-xs font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-600"></span>
               Not Actively Looking
             </span>
           }
         </div>
 
         <!-- Bio preview -->
-        <p class="text-xs text-zinc-300 leading-relaxed line-clamp-4 mb-4">
+        <p class="text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed line-clamp-4 mb-4">
           {{ form.bio || 'Add a bio to see how it looks here.' }}
         </p>
 
         <!-- Location -->
-        <div class="text-xs text-zinc-400 flex items-center gap-1.5 mb-4 pt-3 border-t border-[#1c1c20]">
-          <svg class="w-3.5 h-3.5 text-zinc-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div class="text-xs text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5 mb-4 pt-3 border-t border-zinc-200 dark:border-[#1c1c20]">
+          <svg class="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           <span class="truncate">{{ form.location || 'Location' }}</span>
         </div>
 
         <!-- Quick Links -->
         <div class="flex items-center gap-2 pt-2">
           @if (form.github) {
-            <a [href]="form.github" target="_blank" class="p-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-800 transition-colors" title="GitHub">
+            <a [href]="form.github" target="_blank" class="p-2 rounded-lg bg-white hover:bg-zinc-100 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white border border-zinc-200 dark:border-zinc-800 transition-colors" title="GitHub">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
             </a>
           }
           @if (form.linkedin) {
-            <a [href]="form.linkedin" target="_blank" class="p-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-zinc-800 transition-colors" title="LinkedIn">
+            <a [href]="form.linkedin" target="_blank" class="p-2 rounded-lg bg-white hover:bg-zinc-100 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white border border-zinc-200 dark:border-zinc-800 transition-colors" title="LinkedIn">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76c.98 0 1.77-.8 1.77-1.78a1.77 1.77 0 0 0-3.55 0c0 .98.79 1.78 1.78 1.78m1.39 9.74v-8.37H5.07v8.37h2.78z"/></svg>
             </a>
           }
           @if (form.cv) {
-            <a [href]="form.cv" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-semibold border border-zinc-800 transition-colors">
+            <a [href]="form.cv" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-zinc-100 dark:bg-zinc-900 dark:hover:bg-zinc-800 text-zinc-800 hover:text-black dark:text-zinc-300 dark:hover:text-white text-xs font-semibold border border-zinc-200 dark:border-zinc-800 transition-colors">
               <span>View CV</span>
               <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             </a>

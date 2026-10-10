@@ -1,5 +1,7 @@
-/* Global styles with Tailwind CSS - Pure Black Theme */
+/* Global styles with Tailwind CSS - Dual Theme: Pure Black & Clean Light */
 @import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -8,10 +10,15 @@
 
 body {
   font-family: var(--font-sans);
-  background-color: #000000;
-  color: #f4f4f5;
+  background-color: #f8fafc;
+  color: #09090b;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark body {
+  background-color: #000000;
+  color: #f4f4f5;
 }
 
 /* Custom minimal scrollbar */
@@ -20,27 +27,19 @@ body {
   height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #d4d4d8;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #27272a;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
   background: #3f3f46;
-}
-
-/* Clean black panel utilities */
-.black-panel {
-  background-color: #09090b;
-  border: 1px solid #1f1f23;
-}
-
-.black-card {
-  background-color: #121215;
-  border: 1px solid #232328;
-}
-
-.black-card:hover {
-  border-color: #383840;
 }

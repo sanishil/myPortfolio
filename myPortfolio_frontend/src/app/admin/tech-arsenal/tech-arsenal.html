@@ -1,21 +1,21 @@
 <!-- Header -->
-<div class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#1c1c20]">
+<div class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200 dark:border-[#1c1c20] transition-colors">
   <div>
     <div class="flex items-center gap-2.5 mb-1.5">
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Tech Arsenal</h2>
-      <span class="text-xs px-2.5 py-0.5 rounded-full bg-zinc-900 text-zinc-400 border border-zinc-800 font-medium">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white tracking-tight">Tech Arsenal</h2>
+      <span class="text-xs px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800 font-medium">
         {{ skills.length }} Skills Configured
       </span>
     </div>
-    <p class="text-sm text-zinc-400">Manage technical competencies, languages, frameworks, and engineering tools.</p>
+    <p class="text-sm text-zinc-500 dark:text-zinc-400">Manage technical competencies, languages, frameworks, and engineering tools.</p>
   </div>
 
   <button
     (click)="save()"
-    class="inline-flex items-center gap-2 bg-zinc-100 hover:bg-white active:scale-95 text-black text-xs font-semibold px-5 py-2.5 rounded-xl transition-all duration-150 self-start sm:self-auto shadow-sm"
+    class="inline-flex items-center gap-2 bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-black active:scale-95 text-xs font-semibold px-5 py-2.5 rounded-xl transition-all duration-150 self-start sm:self-auto shadow-xs"
   >
     @if (saved()) {
-      <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
       <span>Skills Saved!</span>
     } @else {
       <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -31,15 +31,15 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
 
   <!-- Add New Skill Card (1 col) -->
-  <div class="rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-5 flex flex-col justify-between">
+  <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-5 flex flex-col justify-between shadow-xs transition-colors">
     <div>
       <div class="flex items-center gap-2 mb-3">
-        <div class="w-6 h-6 rounded-md bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300">
+        <div class="w-6 h-6 rounded-md bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center text-zinc-700 dark:text-zinc-300">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
         </div>
-        <h3 class="text-xs font-bold text-white uppercase tracking-wider">Add New Skill</h3>
+        <h3 class="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Add New Skill</h3>
       </div>
-      <p class="text-xs text-zinc-400 mb-4">Input any library, tool, or language to display.</p>
+      <p class="text-xs text-zinc-500 dark:text-zinc-400 mb-4">Input any library, tool, or language to display.</p>
     </div>
 
     <div class="space-y-3">
@@ -48,22 +48,22 @@
         name="skillName"
         (keydown.enter)="addSkill()"
         placeholder="e.g. Next.js, Kubernetes…"
-        class="w-full bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 transition-all"
+        class="w-full bg-zinc-50 dark:bg-black border border-zinc-300 dark:border-[#27272a] focus:border-zinc-900 dark:focus:border-zinc-400 focus:bg-white dark:focus:bg-black rounded-xl px-3.5 py-2.5 text-xs text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 transition-all"
       />
 
       <select
         [(ngModel)]="newSkill.category"
         name="skillCat"
-        class="w-full bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl px-3 py-2.5 text-xs text-zinc-200 transition-all"
+        class="w-full bg-zinc-50 dark:bg-black border border-zinc-300 dark:border-[#27272a] focus:border-zinc-900 dark:focus:border-zinc-400 focus:bg-white dark:focus:bg-black rounded-xl px-3 py-2.5 text-xs text-zinc-800 dark:text-zinc-200 transition-all"
       >
         @for (cat of categories; track cat) {
-          <option [value]="cat" class="bg-black text-white">{{ cat }}</option>
+          <option [value]="cat" class="bg-white dark:bg-black text-zinc-900 dark:text-white">{{ cat }}</option>
         }
       </select>
 
       <button
         (click)="addSkill()"
-        class="w-full bg-zinc-100 hover:bg-white active:scale-[0.98] text-black text-xs font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-1.5"
+        class="w-full bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-black active:scale-[0.98] text-xs font-semibold py-2.5 rounded-xl transition-colors flex items-center justify-center gap-1.5 shadow-xs"
       >
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
         <span>Add to Arsenal</span>
@@ -72,11 +72,11 @@
   </div>
 
   <!-- Search & Category Filters (2 cols) -->
-  <div class="lg:col-span-2 rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-5 flex flex-col justify-between">
+  <div class="lg:col-span-2 rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-5 flex flex-col justify-between shadow-xs transition-colors">
     <div>
       <div class="flex items-center justify-between mb-3">
-        <h3 class="text-xs font-bold text-white uppercase tracking-wider">Browse & Filter</h3>
-        <span class="text-xs text-zinc-500 font-mono">{{ skills.length }} items</span>
+        <h3 class="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">Browse & Filter</h3>
+        <span class="text-xs text-zinc-400 dark:text-zinc-500 font-mono">{{ skills.length }} items</span>
       </div>
 
       <!-- Search Input -->
@@ -85,19 +85,19 @@
           [ngModel]="searchQuery()"
           (ngModelChange)="searchQuery.set($event)"
           placeholder="Search skills by name (e.g. Angular, MySQL, Java)…"
-          class="w-full bg-black border border-[#27272a] focus:border-zinc-400 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-zinc-500 transition-all"
+          class="w-full bg-zinc-50 dark:bg-black border border-zinc-300 dark:border-[#27272a] focus:border-zinc-900 dark:focus:border-zinc-400 focus:bg-white dark:focus:bg-black rounded-xl pl-9 pr-4 py-2 text-xs text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 transition-all"
         />
-        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-400 dark:text-zinc-500">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
         </div>
       </div>
     </div>
 
     <!-- Category Filter Pills -->
-    <div class="flex flex-wrap gap-1.5 pt-2 border-t border-[#1c1c20]">
+    <div class="flex flex-wrap gap-1.5 pt-2 border-t border-zinc-200 dark:border-[#1c1c20]">
       <button
         (click)="selectedFilter.set('All')"
-        [class]="selectedFilter() === 'All' ? 'bg-zinc-100 text-black font-semibold' : 'bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white'"
+        [class]="selectedFilter() === 'All' ? 'bg-zinc-900 text-white font-semibold dark:bg-zinc-100 dark:text-black' : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-700 dark:bg-zinc-900 dark:border dark:border-zinc-800 dark:text-zinc-400 dark:hover:text-white'"
         class="text-[11px] px-2.5 py-1 rounded-lg transition-all"
       >
         All
@@ -105,7 +105,7 @@
       @for (cat of categories; track cat) {
         <button
           (click)="selectedFilter.set(cat)"
-          [class]="selectedFilter() === cat ? 'bg-zinc-100 text-black font-semibold' : 'bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white'"
+          [class]="selectedFilter() === cat ? 'bg-zinc-900 text-white font-semibold dark:bg-zinc-100 dark:text-black' : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-700 dark:bg-zinc-900 dark:border dark:border-zinc-800 dark:text-zinc-400 dark:hover:text-white'"
           class="text-[11px] px-2.5 py-1 rounded-lg transition-all"
         >
           {{ cat }}
@@ -120,22 +120,22 @@
 <div class="space-y-5">
   @for (cat of displayedCategories; track cat) {
     @if (byCategory(cat).length > 0) {
-      <div class="rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-5 transition-all">
+      <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-5 shadow-xs transition-all">
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-2.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-zinc-400"></span>
-            <h3 class="text-xs font-bold text-white uppercase tracking-wider">{{ cat }}</h3>
+            <span class="w-1.5 h-1.5 rounded-full bg-zinc-600 dark:bg-zinc-400"></span>
+            <h3 class="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider">{{ cat }}</h3>
           </div>
-          <span class="text-[11px] font-mono text-zinc-500">{{ byCategory(cat).length }} skills</span>
+          <span class="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">{{ byCategory(cat).length }} skills</span>
         </div>
 
         <div class="flex flex-wrap gap-2">
           @for (skill of byCategory(cat); track skill.id) {
-            <span class="inline-flex items-center gap-2 bg-black border border-[#27272a] hover:border-zinc-500 rounded-xl px-3 py-1.5 text-xs text-zinc-200 transition-all group">
+            <span class="inline-flex items-center gap-2 bg-zinc-50 dark:bg-black border border-zinc-200 dark:border-[#27272a] hover:border-zinc-400 dark:hover:border-zinc-500 rounded-xl px-3 py-1.5 text-xs text-zinc-800 dark:text-zinc-200 transition-all group">
               <span class="font-medium">{{ skill.name }}</span>
               <button
                 (click)="removeSkill(skill.id)"
-                class="text-zinc-500 hover:text-red-400 p-0.5 rounded transition-colors"
+                class="text-zinc-400 hover:text-red-500 dark:text-zinc-500 dark:hover:text-red-400 p-0.5 rounded transition-colors"
                 aria-label="Remove {{ skill.name }}"
                 title="Remove {{ skill.name }}"
               >
@@ -151,8 +151,8 @@
   }
 
   @if (displayedCategories.length === 0) {
-    <div class="rounded-2xl bg-[#0e0e11] border border-[#1f1f24] p-12 text-center">
-      <p class="text-sm text-zinc-400">No skills match the current search filter.</p>
+    <div class="rounded-2xl bg-white dark:bg-[#0e0e11] border border-zinc-200 dark:border-[#1f1f24] p-12 text-center shadow-xs">
+      <p class="text-sm text-zinc-500 dark:text-zinc-400">No skills match the current search filter.</p>
     </div>
   }
 </div>

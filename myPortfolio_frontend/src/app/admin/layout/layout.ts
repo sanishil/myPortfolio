@@ -1,5 +1,6 @@
 import { Component, signal, inject } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
+import { ThemeService } from '../theme.service';
 
 interface NavItem {
   label: string;
@@ -16,6 +17,7 @@ interface NavItem {
 })
 export class Layout {
   router = inject(Router);
+  themeService = inject(ThemeService);
   sidebarOpen = signal(true);
   mobileMenuOpen = signal(false);
 
@@ -37,5 +39,9 @@ export class Layout {
 
   closeMobileMenu() {
     this.mobileMenuOpen.set(false);
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
   }
 }
