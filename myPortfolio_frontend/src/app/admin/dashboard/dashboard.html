@@ -1,0 +1,62 @@
+<!-- Page header -->
+<div class="mb-8">
+  <h1 class="text-2xl font-bold text-white">Dashboard</h1>
+  <p class="text-gray-400 text-sm mt-1">Welcome back, Sani. Here's your portfolio at a glance.</p>
+</div>
+
+<!-- Stat cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-10">
+  @for (stat of stats; track stat.label) {
+    <div class="rounded-2xl bg-gray-900 border border-gray-800 p-5 flex flex-col gap-3 hover:border-gray-700 transition-colors">
+      <div [class]="'w-10 h-10 rounded-xl bg-gradient-to-br ' + stat.color + ' flex items-center justify-center'">
+        <span class="text-white text-lg font-black">{{ stat.value }}</span>
+      </div>
+      <div>
+        <p class="text-xl font-bold text-white">{{ stat.value }}</p>
+        <p class="text-sm text-gray-400">{{ stat.label }}</p>
+        <p class="text-xs text-gray-500 mt-0.5">{{ stat.sub }}</p>
+      </div>
+    </div>
+  }
+</div>
+
+<!-- Quick links -->
+<div class="mb-6">
+  <h2 class="text-lg font-semibold text-white mb-4">Quick Actions</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+    @for (link of quickLinks; track link.route) {
+      <a
+        [routerLink]="link.route"
+        class="group rounded-2xl bg-gray-900 border border-gray-800 p-5 flex flex-col gap-2 hover:border-indigo-500/60 hover:bg-gray-800 transition-all duration-200"
+      >
+        <p class="text-sm font-semibold text-white group-hover:text-indigo-400 transition-colors">{{ link.label }}</p>
+        <p class="text-xs text-gray-500">{{ link.desc }}</p>
+        <div class="mt-auto flex items-center gap-1 text-indigo-500 text-xs font-medium">
+          <span>Manage</span>
+          <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </a>
+    }
+  </div>
+</div>
+
+<!-- Portfolio link -->
+<div class="rounded-2xl bg-gradient-to-r from-indigo-600/20 to-cyan-600/20 border border-indigo-500/30 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+  <div>
+    <p class="text-white font-semibold">View live portfolio</p>
+    <p class="text-gray-400 text-sm mt-0.5">See how your portfolio looks to visitors.</p>
+  </div>
+  <a
+    href="/"
+    target="_blank"
+    class="shrink-0 inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors"
+  >
+    Open Portfolio
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+      <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+    </svg>
+  </a>
+</div>

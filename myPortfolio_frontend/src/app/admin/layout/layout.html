@@ -1,0 +1,119 @@
+<div class="flex h-screen bg-gray-950 text-white overflow-hidden">
+
+  <!-- ── Sidebar ── -->
+  <aside
+    [class]="(sidebarOpen() ? 'w-64' : 'w-16') + ' flex flex-col bg-gray-900 border-r border-gray-800 transition-all duration-300 ease-in-out shrink-0'"
+  >
+    <!-- Brand -->
+    <div class="flex items-center gap-3 px-4 py-5 border-b border-gray-800">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center shrink-0">
+        <span class="text-sm font-black text-white">SS</span>
+      </div>
+      @if (sidebarOpen()) {
+        <div class="overflow-hidden">
+          <p class="text-sm font-bold text-white leading-tight">Sani Shil</p>
+          <p class="text-xs text-gray-400">Admin Panel</p>
+        </div>
+      }
+    </div>
+
+    <!-- Nav -->
+    <nav class="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
+      @for (item of navItems; track item.route) {
+        <a
+          [routerLink]="item.route"
+          routerLinkActive="bg-indigo-600/20 text-indigo-400 border-l-2 border-indigo-400"
+          [routerLinkActiveOptions]="{ exact: false }"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors duration-150 group"
+        >
+          <!-- Inline SVG icons keyed by item.icon -->
+          @switch (item.icon) {
+            @case ('grid') {
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+              </svg>
+            }
+            @case ('user') {
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+              </svg>
+            }
+            @case ('cpu') {
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                <rect x="8" y="8" width="8" height="8" rx="1"/>
+                <path d="M9 4V2M15 4V2M9 22v-2M15 22v-2M4 9H2M4 15H2M22 9h-2M22 15h-2"/>
+              </svg>
+            }
+            @case ('rocket') {
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+              </svg>
+            }
+            @case ('briefcase') {
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+                <line x1="12" y1="12" x2="12" y2="12.01"/>
+              </svg>
+            }
+          }
+
+          @if (sidebarOpen()) {
+            <span class="text-sm font-medium truncate">{{ item.label }}</span>
+          }
+        </a>
+      }
+    </nav>
+
+    <!-- Footer -->
+    <div class="px-2 py-3 border-t border-gray-800">
+      <a
+        href="/"
+        target="_blank"
+        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors duration-150"
+      >
+        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        @if (sidebarOpen()) {
+          <span class="text-sm font-medium">View Portfolio</span>
+        }
+      </a>
+    </div>
+  </aside>
+
+  <!-- ── Main area ── -->
+  <div class="flex flex-col flex-1 overflow-hidden">
+
+    <!-- Topbar -->
+    <header class="flex items-center gap-4 px-6 py-4 bg-gray-900 border-b border-gray-800 shrink-0">
+      <button
+        (click)="toggleSidebar()"
+        class="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
+        aria-label="Toggle sidebar"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+
+      <div class="flex-1"></div>
+
+      <!-- Admin badge -->
+      <div class="flex items-center gap-2 bg-gray-800 rounded-full px-3 py-1.5">
+        <div class="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center text-xs font-bold">S</div>
+        <span class="text-sm text-gray-300 hidden sm:block">Sani Shil</span>
+      </div>
+    </header>
+
+    <!-- Page content -->
+    <main class="flex-1 overflow-y-auto p-6">
+      <router-outlet />
+    </main>
+  </div>
+</div>

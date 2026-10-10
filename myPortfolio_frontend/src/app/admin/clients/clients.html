@@ -1,0 +1,128 @@
+<!-- Header -->
+<div class="mb-8 flex items-center justify-between gap-4 flex-wrap">
+  <div>
+    <h1 class="text-2xl font-bold text-white">Clients</h1>
+    <p class="text-gray-400 text-sm mt-1">Manage the clients shown in the marquee strip.</p>
+  </div>
+  <button
+    (click)="save()"
+    class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 active:scale-95 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition-all"
+  >
+    @if (saved()) {
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      Saved!
+    } @else {
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+        <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+      </svg>
+      Save Changes
+    }
+  </button>
+</div>
+
+<!-- Add client form -->
+<div class="bg-gray-900 border border-gray-800 rounded-2xl p-6 mb-6">
+  <h2 class="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">Add New Client</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+    <div class="flex flex-col gap-1.5">
+      <label class="text-xs text-gray-400 font-medium">Client Name *</label>
+      <input [(ngModel)]="newClient.name" name="clientName"
+        class="bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
+        placeholder="Company / Person" />
+    </div>
+    <div class="flex flex-col gap-1.5">
+      <label class="text-xs text-gray-400 font-medium">Website URL</label>
+      <input [(ngModel)]="newClient.url" name="clientUrl"
+        class="bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
+        placeholder="https://…" />
+    </div>
+    <div class="flex flex-col gap-1.5">
+      <label class="text-xs text-gray-400 font-medium">Logo path / URL</label>
+      <input [(ngModel)]="newClient.logo" name="clientLogo"
+        class="bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
+        placeholder="assets/logo.png (optional)" />
+    </div>
+    <div class="flex flex-col gap-1.5">
+      <label class="text-xs text-gray-400 font-medium">Category</label>
+      <input [(ngModel)]="newClient.category" name="clientCat"
+        class="bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
+        placeholder="e.g. FinTech, Education" />
+    </div>
+  </div>
+  <button
+    (click)="addClient()"
+    class="mt-4 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition-colors"
+  >
+    + Add Client
+  </button>
+</div>
+
+<!-- Client list -->
+<div class="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden">
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="border-b border-gray-800 text-xs text-gray-500 uppercase tracking-wider">
+        <th class="text-left px-5 py-3.5">Client</th>
+        <th class="text-left px-5 py-3.5 hidden md:table-cell">URL</th>
+        <th class="text-left px-5 py-3.5 hidden sm:table-cell">Category</th>
+        <th class="text-left px-5 py-3.5 hidden lg:table-cell">Logo</th>
+        <th class="px-5 py-3.5"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (client of clients; track client.id) {
+        <tr class="border-b border-gray-800 last:border-0 hover:bg-gray-800/50 transition-colors">
+          <!-- Name + logo preview -->
+          <td class="px-5 py-3.5">
+            <div class="flex items-center gap-3">
+              @if (client.logo) {
+                <img [src]="client.logo" [alt]="client.name" class="w-7 h-7 rounded object-contain bg-gray-700 p-0.5" />
+              } @else {
+                <div class="w-7 h-7 rounded bg-gray-700 flex items-center justify-center text-gray-500">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                  </svg>
+                </div>
+              }
+              <span class="text-white font-medium">{{ client.name }}</span>
+            </div>
+          </td>
+          <td class="px-5 py-3.5 hidden md:table-cell">
+            @if (client.url) {
+              <a [href]="client.url" target="_blank" class="text-indigo-400 hover:text-indigo-300 truncate max-w-xs block transition-colors">
+                {{ client.url }}
+              </a>
+            } @else {
+              <span class="text-gray-600">—</span>
+            }
+          </td>
+          <td class="px-5 py-3.5 hidden sm:table-cell">
+            @if (client.category) {
+              <span class="inline-block bg-gray-800 border border-gray-700 text-gray-300 text-xs px-2.5 py-1 rounded-full">{{ client.category }}</span>
+            } @else {
+              <span class="text-gray-600">—</span>
+            }
+          </td>
+          <td class="px-5 py-3.5 hidden lg:table-cell text-gray-500 text-xs truncate max-w-xs">
+            {{ client.logo || '—' }}
+          </td>
+          <td class="px-5 py-3.5">
+            <button
+              (click)="removeClient(client.id)"
+              class="text-xs text-red-400 hover:text-red-300 bg-gray-800 hover:bg-red-900/30 px-3 py-1.5 rounded-lg transition-colors"
+            >
+              Remove
+            </button>
+          </td>
+        </tr>
+      }
+
+      @if (clients.length === 0) {
+        <tr>
+          <td colspan="5" class="px-5 py-10 text-center text-gray-600 text-sm">No clients yet. Add one above.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
